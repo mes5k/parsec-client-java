@@ -891,6 +891,7 @@ public class BasicClient {
       throw new InvalidServiceResponseTypeException();
     }
   }
+
   /**
    * [Cryptographic Operation]** Compute hash of a message.
    *
@@ -936,6 +937,60 @@ public class BasicClient {
             this.authData);
     if (res instanceof NativeResult.PsaHashCompareResult) {
       return (NativeResult.PsaHashCompareResult) res;
+    }
+    throw new InvalidServiceResponseTypeException();
+  }
+
+  /**
+   * [Cryptographic Operation]** Compute hash of a message.
+   *
+   * <p>The MAC computation will be performed with the algorithm defined in `alg`.
+   */
+  public NativeResult.PsaMacComputeResult psaMacCompute(
+      PsaAlgorithm.Algorithm.Mac alg, String keyName, byte[] input) {
+    ProviderId cryptoProvider = this.canProvideCrypto();
+
+    NativeResult res =
+        this.operationClient.processOperation(
+            NativeOperation.PsaMacComputeOperation.builder()
+                .alg(alg)
+                .keyName(keyName)
+                .input(input)
+                .build(),
+            cryptoProvider,
+            this.authData);
+    if (res instanceof NativeResult.PsaMacComputeResult) {
+      return (NativeResult.PsaMacComputeResult) res;
+    } else {
+      // Should really not be reached given the checks we do, but it's not impossible if some
+      // changes happen in the interface
+      throw new InvalidServiceResponseTypeException();
+    }
+  }
+
+  /**
+   * [Cryptographic Operation]** Compute MAC of a message and key and compare it with a reference value.
+   *
+   * <p>The MAC computation will be performed with the algorithm defined in `alg`.
+   *
+   * <p>If this operation returns no error, the MAC was computed successfully and it matches the
+   * reference value.
+   */
+  public NativeResult.PsaMacVerifyResult psaMacVerify(
+      PsaAlgorithm.Algorithm.Mac alg, String keyName, byte[] input, byte[] mac) {
+    ProviderId cryptoProvider = this.canProvideCrypto();
+    NativeResult res =
+        this.operationClient.processOperation(
+            NativeOperation.PsaMacVerifyOperation.builder()
+                .alg(alg)
+                .keyName(keyName)
+                .input(input)
+                .mac(mac)
+                .build(),
+            cryptoProvider,
+            this.authData);
+    if (res instanceof NativeResult.PsaMacVerifyResult) {
+      return (NativeResult.PsaMacVerifyResult) res;
     }
     throw new InvalidServiceResponseTypeException();
   }
