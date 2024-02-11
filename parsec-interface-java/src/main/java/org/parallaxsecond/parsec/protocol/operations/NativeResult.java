@@ -199,6 +199,20 @@ public interface NativeResult {
   class PsaVerifyHashResult implements NativeResult {
     Opcode opcode = Opcode.PSA_VERIFY_HASH;
   }
+  /** PsaMacCompute result */
+  @Value
+  @Builder
+  class PsaMacComputeResult implements NativeResult {
+    Opcode opcode = Opcode.PSA_MAC_COMPUTE;
+    /** The `mac` field contains the MAC for the message. */
+    byte[] mac;
+  }
+  /** PsaMacVerifgy result */
+  @Value
+  @Builder
+  class PsaMacVerifyResult implements NativeResult {
+    Opcode opcode = Opcode.PSA_MAC_VERIFY;
+  }
   /** PsaAsymmetricEncrypt result */
   @Value
   @Builder

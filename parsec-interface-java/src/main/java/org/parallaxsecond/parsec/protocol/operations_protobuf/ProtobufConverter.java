@@ -32,6 +32,8 @@ public class ProtobufConverter implements Convert {
     converters.put(Opcode.LIST_AUTHENTICATORS, new ListAuthenticatorsProtobufOpConverter());
     converters.put(Opcode.PSA_HASH_COMPUTE, new PsaHashComputeProtobufOpConverter());
     converters.put(Opcode.PSA_HASH_COMPARE, new PsaHashCompareProtobufOpConverter());
+    converters.put(Opcode.PSA_MAC_COMPUTE, new PsaMacComputeProtobufOpConverter());
+    converters.put(Opcode.PSA_MAC_VERIFY, new PsaMacVerifyProtobufOpConverter());
     converters.put(Opcode.PSA_AEAD_ENCRYPT, new PsaAeadEncryptProtobufOpConverter());
     converters.put(Opcode.PSA_AEAD_DECRYPT, new PsaAeadDecryptProtobufOpConverter());
     converters.put(Opcode.PSA_RAW_KEY_AGREEMENT, new PsaRawKeyAgreementProtobufOpConverter());

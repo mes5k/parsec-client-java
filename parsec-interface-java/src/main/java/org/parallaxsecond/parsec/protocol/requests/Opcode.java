@@ -53,6 +53,10 @@ public enum Opcode {
   PSA_AEAD_DECRYPT(0x0012, false, false),
   /** PsaRawKeyAgreement operation */
   PSA_RAW_KEY_AGREEMENT(0x0013, false, false),
+  /** PsaMacCompute operation */
+  PSA_MAC_COMPUTE(0x0016, false, false),
+  /** PsaMacVerify operation */
+  PSA_MAC_VERIFY(0x0017, false, false),
   /** PsaSignMessage operation */
   PSA_SIGN_MESSAGE(0x0018, false, false),
   /** PsaVerifyMessage operation */

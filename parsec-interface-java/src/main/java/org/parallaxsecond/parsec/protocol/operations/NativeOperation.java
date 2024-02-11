@@ -189,6 +189,35 @@ public interface NativeOperation {
     byte[] hash;
   }
 
+  /** PsaMacCompute operation */
+  @Value
+  @Builder
+  class PsaMacComputeOperation implements NativeOperation {
+    Opcode opcode = Opcode.PSA_MAC_COMPUTE;
+    /** The MAC algorithm to compute. */
+    // FIXME
+    PsaAlgorithm.Algorithm.Mac alg;
+    /** The input used to generated MAC. */
+    byte[] input;
+    /** The key name used to generate MAC. */
+    String keyName;
+  }
+  /** PsaMacVerify operation */
+  @Value
+  @Builder
+  class PsaMacVerifyOperation implements NativeOperation {
+    Opcode opcode = Opcode.PSA_MAC_VERIFY;
+    /** The hash algorithm to compute. */
+    // FIXME
+    PsaAlgorithm.Algorithm.Mac alg;
+    /** The input used to generated MAC. */
+    byte[] input;
+    /** The reference MAC value. */
+    byte[] mac;
+    /** The key name used to generate MAC. */
+    String keyName;
+  }
+
   /** PsaAsymmetricEncrypt operation */
   @Value
   @Builder
