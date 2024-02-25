@@ -6,4 +6,7 @@ dependency-reduced-pom.xml
 .run/gg_*
 .run/parsec_docker_run.run.xml
 secrets.env
-
+.classpath
+.project
+.factorypath
+.settings
